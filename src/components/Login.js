@@ -15,6 +15,10 @@ const Login = () => {
                     <SignIn>Sign in</SignIn>
                 </div>
             </Nav>
+
+            <Section>
+
+            </Section>
         </Container>
     );
 };
@@ -64,4 +68,38 @@ const SignIn = styled.a`
   color: #0a66c2;
   border-radius: 24px;
   transition-duration: 167ms;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 40px;
+  padding: 10px 24px;
+  cursor: pointer;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0);
+  &:hover {
+    background-color: rgba(112, 181, 249, 0.15);
+    cursor: pointer;
+    color: #0a66c2;
+    text-decoration: none;
+  }
+`;
+
+
+const Section = styled.div`
+  align-content: start;
+  display: flex;
+  min-height: 700px;
+  padding-bottom: 138px;
+  padding-top: 40px;
+  padding: 60px 0;
+  position: relative;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1128px;
+  align-items: center;
+  margin: auto;
+  
+  @media(max-width: 768px) {
+    margin: auto;
+    min-height: 0px;
+  }
 `;
