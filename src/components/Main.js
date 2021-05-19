@@ -10,6 +10,7 @@ import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import ShareIcon from '@material-ui/icons/Share';
 import SendIcon from '@material-ui/icons/Send';
 import {Chat} from "@material-ui/icons";
+import {Button} from "@material-ui/core";
 const Main = () => {
     return (
         <Container>
@@ -73,13 +74,13 @@ const Main = () => {
 
                     <SocialCounts>
                         <li>
-                            <button>
+                            <Button>
                                 <img src="https://static-exp1.licdn.com/sc/h/d310t2g24pvdy4pt1jkedo4yb" alt=""/>
                                 <img src="https://static-exp1.licdn.com/sc/h/5thsbmikm6a8uov24ygwd914f" alt=""/>
                                 <span>
                                     76
                                 </span>
-                            </button>
+                            </Button>
                         </li>
                         <li>
                             <a>
@@ -88,24 +89,24 @@ const Main = () => {
                         </li>
                     </SocialCounts>
                 <SocialActions>
-                    <button>
+                    <Button>
                         <ThumbUpAltIcon color="primary" />
                         <span>Like</span>
-                    </button>
+                    </Button>
 
-                    <button>
+                    <Button>
                         <ChatBubbleIcon color="primary" />
                         <span>Comments</span>
-                    </button>
+                    </Button>
 
-                    <button>
+                    <Button>
                         <ShareIcon color="primary" />
                         <span>Share</span>
-                    </button>
-                    <button>
+                    </Button>
+                    <Button>
                         <SendIcon color="primary" />
                         <span>Send</span>
-                    </button>
+                    </Button>
 
                 </SocialActions>
                 </Article>
