@@ -22,11 +22,42 @@ const Header = () => {
 
                 <Nav>
                     <NavListWrap>
-                        <NavList>
+                        <NavList className="active">
                             <a>
                                   <img src="/images/nav-home.svg" alt=""/>
+                                <span>Home</span>
                             </a>
                         </NavList>
+
+                        <NavList>
+                            <a>
+                                <img src="/images/nav-network.svg" alt=""/>
+                                <span>My network</span>
+                            </a>
+                        </NavList>
+
+                        <NavList>
+                            <a>
+                                <img src="/images/nav-jobs.svg" alt=""/>
+                                <span>Jobs</span>
+                            </a>
+                        </NavList>
+
+                        <NavList>
+                            <a>
+                                <img src="/images/nav-messaging.svg" alt=""/>
+                                <span>Messages</span>
+                            </a>
+                        </NavList>
+
+                        <NavList>
+                            <a>
+                                <img src="/images/nav-notifications.svg" alt=""/>
+                                <span>Notifications</span>
+                            </a>
+                        </NavList>
+
+
                     </NavListWrap>
                 </Nav>
             </Content>
@@ -114,5 +145,63 @@ const Nav = styled.nav`
     bottom: 0;
     background-color: white;
     width: 100%;
+  }
+`
+
+const NavListWrap = styled.ul`
+  display: flex;
+  flex-wrap: nowrap;
+  list-style-type: none;
+  .active {
+    span:after {
+      content: "";
+      transform: scaleX(1);
+      border-bottom: 2px solid var(--white, #fff);
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      transition: transform 0.2s ease-in-out;
+      width: 100%;
+      border-color: rgba(0, 0, 0, 0.9);
+    }
+  }
+`;
+
+const NavList = styled.li`
+  display: flex;
+  align-items: center;
+  a {
+    align-items: center;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    font-weight: 400;
+    justify-content: center;
+    line-height: 1.5;
+    min-height: 42px;
+    min-width: 80px;
+    position: relative;
+    text-decoration: none;
+    cursor: pointer;
+    
+    span  {
+      color: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+    }
+    
+    @media(max-width: 768px) {
+      min-width: 70px;
+    }
+  }
+  
+  &:hover, &:active {
+    a {
+      span {
+        color: rgba(0, 0, 0, 0.9);
+        
+      }
+    }
   }
 `
