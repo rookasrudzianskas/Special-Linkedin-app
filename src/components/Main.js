@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from "styled-components";
-
+import HomeIcon from '@material-ui/icons/Home';
+import VideocamIcon from '@material-ui/icons/Videocam';
+import EventIcon from '@material-ui/icons/Event';
+import DescriptionIcon from '@material-ui/icons/Description';
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 const Main = () => {
     return (
         <Container>
@@ -13,22 +17,22 @@ const Main = () => {
 
                 <div>
                     <button>
-                        <img src="/images/nav-home.svg" alt=""/>
+                       <HomeIcon/>
                         <span>Photo</span>
                     </button>
 
                     <button>
-                        <img src="/images/nav-jobs.svg" alt=""/>
+                        <VideocamIcon />
                         <span>Video</span>
                     </button>
 
                     <button>
-                        <img src="/images/nav-messaging.svg" alt=""/>
+                        <EventIcon/>
                         <span>Event</span>
                     </button>
 
                     <button>
-                        <img src="/images/nav-network.svg" alt=""/>
+                        <DescriptionIcon/>
                         <span>Write an article</span>
                     </button>
 
@@ -48,7 +52,7 @@ const Main = () => {
                         </a>
 
                         <button>
-                            <img src="/images/plus-icon.svg" alt=""/>
+                            <MoreHorizIcon />
                         </button>
                     </SharedActor>
 
@@ -61,6 +65,23 @@ const Main = () => {
                             <img src="https://pbs.twimg.com/profile_images/1350895249678348292/RS1Aa0iK.jpg" alt=""/>
                         </a>
                     </SharedImg>
+
+                    <SocialCounts>
+                        <li>
+                            <button>
+                                <img src="https://static-exp1.licdn.com/sc/h/d310t2g24pvdy4pt1jkedo4yb" alt=""/>
+                                <img src="https://static-exp1.licdn.com/sc/h/5thsbmikm6a8uov24ygwd914f" alt=""/>
+                                <span>
+                                    76
+                                </span>
+                            </button>
+                        </li>
+                        <li>
+                            <a>
+                                2 comments
+                            </a>
+                        </li>
+                    </SocialCounts>
                 </Article>
             </div>
         </Container>
@@ -242,7 +263,25 @@ const SharedImg = styled.div`
     
   }
 `
-
+const SocialCounts = styled.ul`
+  line-height: 1.3;
+  display: flex;
+  align-items: flex-start;
+  overflow: auto;
+  margin: 0 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid #e9e5df;
+  list-style: none;
+  
+  li {
+    margin-right: 5px;
+    font-size: 12px;
+    button {
+      display: flex;
+      
+    }
+  }
+`
 
 
 
