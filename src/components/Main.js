@@ -98,7 +98,7 @@ const ShareBox = styled(CommonCard)`
       padding: 8px 16px 0px 16px;
       
       img {
-        width: 48px;
+        width: 34px;
         border-radius: 50%;
         margin-right: 8px;
       }
