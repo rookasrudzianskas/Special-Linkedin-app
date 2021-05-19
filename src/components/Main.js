@@ -22,25 +22,33 @@ const Main = () => {
                 </div>
 
                 <div>
-                    <Button>
+                    <button>
+                        <IconButton>
                             <HomeIcon/>
+                        </IconButton>
                         <span>Photo</span>
-                    </Button>
+                    </button>
 
-                    <Button>
+                    <button>
+                    <IconButton>
                             <VideocamIcon />
+                    </IconButton>
                         <span>Video</span>
-                    </Button>
+                    </button>
 
-                    <Button>
+                    <button>
+                    <IconButton>
                         <EventIcon/>
+                    </IconButton>
                         <span>Event</span>
-                    </Button>
+                    </button>
 
-                    <Button>
+                    <button>
+                    <IconButton>
                         <DescriptionIcon/>
+                    </IconButton>
                         <span>Write an article</span>
-                    </Button>
+                    </button>
 
                 </div>
             </ShareBox>
@@ -149,7 +157,7 @@ const ShareBox = styled(CommonCard)`
   }
   
   div {
-    Button {
+    button {
       outline: none;
       color: rgba(0, 0, 0, 0.6);
       font-size: 14px;
