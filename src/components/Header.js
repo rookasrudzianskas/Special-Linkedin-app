@@ -59,7 +59,9 @@ const Header = () => {
 
                         <User>
                             <a>
+                                {
                                 <img src="/images/user.svg" alt=""/>
+                                }
                                 <span>Me</span>
                                 <img src="/images/down-icon.svg" alt=""/>
                             </a>

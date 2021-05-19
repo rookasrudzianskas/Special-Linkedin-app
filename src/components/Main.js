@@ -10,7 +10,7 @@ import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import ShareIcon from '@material-ui/icons/Share';
 import SendIcon from '@material-ui/icons/Send';
 import {Chat} from "@material-ui/icons";
-import {Button} from "@material-ui/core";
+import {Button, IconButton} from "@material-ui/core";
 const Main = () => {
     return (
         <Container>
@@ -22,25 +22,25 @@ const Main = () => {
                 </div>
 
                 <div>
-                    <button>
-                       <HomeIcon/>
+                    <Button>
+                            <HomeIcon/>
                         <span>Photo</span>
-                    </button>
+                    </Button>
 
-                    <button>
-                        <VideocamIcon />
+                    <Button>
+                            <VideocamIcon />
                         <span>Video</span>
-                    </button>
+                    </Button>
 
-                    <button>
+                    <Button>
                         <EventIcon/>
                         <span>Event</span>
-                    </button>
+                    </Button>
 
-                    <button>
+                    <Button>
                         <DescriptionIcon/>
                         <span>Write an article</span>
-                    </button>
+                    </Button>
 
                 </div>
             </ShareBox>
@@ -149,7 +149,7 @@ const ShareBox = styled(CommonCard)`
   }
   
   div {
-    button {
+    Button {
       outline: none;
       color: rgba(0, 0, 0, 0.6);
       font-size: 14px;
