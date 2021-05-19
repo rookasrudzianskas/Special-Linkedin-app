@@ -19,6 +19,16 @@ const Header = () => {
                         <img src="/images/search-icon.svg" alt=""/>
                     </SearchIcon>
                 </Search>
+
+                <Nav>
+                    <NavListWrap>
+                        <NavList>
+                            <a>
+                                  <img src="/images/nav-home.svg" alt=""/>
+                            </a>
+                        </NavList>
+                    </NavListWrap>
+                </Nav>
             </Content>
         </Container>
     );
@@ -93,3 +103,16 @@ const SearchIcon= styled.div`
   align-items: center;
   transition: background-color 0.15s;
 `;
+
+const Nav = styled.nav`
+  margin-left: auto;
+  display: block;
+  
+  @media(max-width: 768px) {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: white;
+    width: 100%;
+  }
+`
