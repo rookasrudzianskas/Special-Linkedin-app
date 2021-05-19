@@ -5,6 +5,11 @@ import VideocamIcon from '@material-ui/icons/Videocam';
 import EventIcon from '@material-ui/icons/Event';
 import DescriptionIcon from '@material-ui/icons/Description';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
+import ShareIcon from '@material-ui/icons/Share';
+import SendIcon from '@material-ui/icons/Send';
+import {Chat} from "@material-ui/icons";
 const Main = () => {
     return (
         <Container>
@@ -82,6 +87,27 @@ const Main = () => {
                             </a>
                         </li>
                     </SocialCounts>
+
+                    <button>
+                        <ThumbUpAltIcon color="primary" />
+                        <span>Like</span>
+                    </button>
+
+                    <button>
+                        <ChatBubbleIcon color="primary" />
+                        <span>Comments</span>
+                    </button>
+
+                    <button>
+                        <ShareIcon color="primary" />
+                        <span>Share</span>
+                    </button>
+                    <button>
+                        <SendIcon color="primary" />
+                        <span>Send</span>
+                    </button>
+
+
                 </Article>
             </div>
         </Container>
