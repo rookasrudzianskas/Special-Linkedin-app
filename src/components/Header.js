@@ -2,6 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import {getUserAuth} from "../actions";
 import {connect} from "react-redux";
+import {signOutAPI} from "../actions";
 
 const Header = (props) => {
     return (
@@ -73,7 +74,7 @@ const Header = (props) => {
 
                             </a>
 
-                            <SignOut>
+                            <SignOut onClick={() => props.signOut()}>
                                 <a>
                                     SignOut
                                 </a>
@@ -104,7 +105,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-
+    signOut: () => dispatch(signOutAPI()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
@@ -253,7 +254,7 @@ const NavList = styled.li`
 
 const SignOut = styled.div`
  position: absolute;
-  top: 45px;
+  top: 44px;
   background: white;
   border-radius: 0 0 5px 5px;
   width: 100px;
