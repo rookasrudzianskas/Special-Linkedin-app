@@ -2,10 +2,15 @@ import React from 'react';
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { signInAPI } from "../actions";
-
+import {Redirect } from "react-router-dom";
 const Login = (props) => {
     return (
         <Container>
+            {/* if we have the user in here*/}
+            {
+                props.user &&
+                    <Redirect to="/home" />
+            }
             <Nav>
                 <a href="/">
                     <img src="/images/login-logo.svg" alt=""/>
@@ -25,6 +30,7 @@ const Login = (props) => {
                 </Hero>
 
                 <Form>
+                    {/* fires the function */}
                     <Google onClick={() => props.signIn()}>
                         <img src="/images/google.svg" alt=""/>
                         Sign in with Google
@@ -39,8 +45,13 @@ const Login = (props) => {
 //     return {};
 // };
 const mapStateToProps = (state) => {
-    return {};
+    return {
+        // this is where the user is stored
+        user: state.userState.user,
+    };
 };
+
+
 
 // this one, gets this function and stores in the signIn, to make it on the google button
 const mapDispatchToProps = (dispatch) => ({
