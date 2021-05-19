@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from "styled-components";
 import { connect } from "react-redux";
+import { signInAPI } from "../actions";
 
-const Login = () => {
+const Login = (props) => {
     return (
         <Container>
             <Nav>
@@ -24,7 +25,7 @@ const Login = () => {
                 </Hero>
 
                 <Form>
-                    <Google>
+                    <Google onClick={() => props.signIn()}>
                         <img src="/images/google.svg" alt=""/>
                         Sign in with Google
                     </Google>
@@ -37,12 +38,17 @@ const Login = () => {
 // const mapStateToProps = (state) => {
 //     return {};
 // };
+const mapStateToProps = (state) => {
+    return {};
+};
 
-// const mapDispatchToProps = (dispatch) = ({})
+// this one, gets this function and stores in the signIn, to make it on the google button
+const mapDispatchToProps = (dispatch) => ({
+    signIn: () => dispatch(signInAPI()),
+});
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Login)
 
-export default Login;
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
 
 const Container = styled.div`
   padding: 0px;
