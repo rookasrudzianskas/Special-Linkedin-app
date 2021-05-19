@@ -17,3 +17,15 @@ export function signInAPI() {
         }).catch(error => alert(error));
     };
 }
+
+
+export function getUserAuth() {
+    // if the user state changes, we go and set the user for the new info
+    return (dispatch) => {
+        auth.onAuthStateChanged(async (user) => {
+            if(user) {
+                dispatch(setUser(user))
+            }
+        })
+    }
+}
