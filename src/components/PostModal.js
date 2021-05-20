@@ -7,11 +7,15 @@ import MovieIcon from '@material-ui/icons/Movie';
 import ShareIcon from '@material-ui/icons/Share';
 import {useState } from "react";
 import ReactPlayer from "react-player";
+import {connect} from "react-redux";
+import {signInAPI} from "../actions";
+
 const PostModal = (props) => {
 
     const [editorText, setEditorText] = useState("");
     const [shareImage, setShareImage] = useState("");
     const [videoLink, setVideoLink] = useState("");
+    const [assetArea, setAssetArea] = useState("");
 
     const handleChange = (e) => {
         const image = e.target.files[0];
@@ -24,9 +28,19 @@ const PostModal = (props) => {
         setShareImage(image);
     };
 
+    const switchAssetArea = (area) => {
+        setShareImage("");
+        setVideoLink("")
+        setAssetArea(area);
+    }
+
     const reset = (e) => {
         setEditorText("");
-        props.handleClick(e)
+        setVideoLink("");
+        setAssetArea("");
+        setShareImage("");
+
+        props.handleClick(e);
         console.log("fired >>> ")
     };
 
@@ -49,28 +63,32 @@ const PostModal = (props) => {
                     </UserInfo>
                     <Editor>
                     <textarea value={editorText} onChange={(e) => setEditorText(e.target.value)} placeholder="Add the post about anything?! 🚀" autoFocus={true} />
+
+                        { assetArea === 'image' ? (
                         <UploadImage>
                             <input type="file" accept="image/gif, image/jpeg, image/png" name="image" id="file" style={{ display: 'none' }} onChange={handleChange}/>
                             <p><label htmlFor="file">Select an image to share</label></p>
 
                             {shareImage && <img src={URL.createObjectURL(shareImage)} alt=""/>}
+                        </UploadImage>
+                        ) : assetArea === 'media' && (
 
                             <>
-                                <input type="text" placeholder="Please input a video link" value={videoLink} onChange={(e) => setVideoLink(e.target.value)}/>
+                            <input type="text" placeholder="Please input a video link" value={videoLink} onChange={(e) => setVideoLink(e.target.value)}/>
 
-                                {videoLink && <ReactPlayer width={"100%"} url={videoLink}/>}
+                        {videoLink && <ReactPlayer width={"100%"} url={videoLink}/>}
                             </>
-                        </UploadImage>
+                        )}
                     </Editor>
                 </SharedContent>
                 <SharedCreation>
                     <AttachAssets>
-                        <AssetButton>
+                        <AssetButton onClick={() => switchAssetArea('image')}>
                             <button>
                             <ImageIcon />
                             </button>
                         </AssetButton>
-                        <AssetButton>
+                        <AssetButton onClick={() => switchAssetArea("media")}>
                             <button>
                             <MovieIcon />
                             </button>
@@ -267,6 +285,22 @@ const UploadImage = styled.div`
   }
 `
 
+const mapStateToProps = (state) => {
+    return {
+        // this is where the user is stored
+        user: state.userState.user,
+    };
+};
+
+
+
+// this one, gets this function and stores in the signIn, to make it on the google button
+const mapDispatchToProps = (dispatch) => ({
+    signIn: () => dispatch(signInAPI()),
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
 
 
 
