@@ -134,7 +134,7 @@ const PostModal = (props) => {
 
                 </ShareComment>
 
-                    <PostButton disabled={!editorText ? true : false}>
+                    <PostButton disabled={!editorText ? true : false} onClick={(event) => postArticle(event)}>
                         Post
                     </PostButton>
 
@@ -322,7 +322,7 @@ const mapStateToProps = (state) => {
 
 // this one, gets this function and stores in the signIn, to make it on the google button
 const mapDispatchToProps = (dispatch) => ({
-
+    postArticle: (payload) => dispatch(postArticleAPI(payload)),
 });
 
 
