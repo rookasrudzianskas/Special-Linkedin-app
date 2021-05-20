@@ -10,18 +10,42 @@ import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import ShareIcon from '@material-ui/icons/Share';
 import SendIcon from '@material-ui/icons/Send';
 import {Chat} from "@material-ui/icons";
+import { useState } from "react";
 
 import PostModal from "./PostModal";
 
 import {Button, IconButton} from "@material-ui/core";
 const Main = () => {
+
+    const [showModal, setShowModal ] = useState("close");
+
+    const handleClick = (e) => {
+        e.preventDefault();
+
+        if(e.target !== e.currentTarget) {
+            return;
+        }
+
+        switch (showModal) {
+            case "open":
+                setShowModal("close");
+                break;
+            case "close":
+                setShowModal("open");
+                break;
+
+            default:
+                setShowModal("close");
+                break;
+        }
+    }
     return (
         <Container>
             <ShareBox>
                 Share
                 <div>
                     <img src="/images/user.svg" alt=""/>
-                    <button>Start a post</button>
+                    <button onClick={handleClick}>Start a post</button>
                 </div>
 
                 <div>
@@ -122,7 +146,7 @@ const Main = () => {
                 </SocialActions>
                 </Article>
             </div>
-            <PostModal />
+            <PostModal showModal={showModal} handleClick={handleClick}/>
         </Container>
     );
 };
@@ -154,6 +178,7 @@ const ShareBox = styled(CommonCard)`
   color: #958b7b;
   margin:  0 0 8px;
   background: white;
+  cursor: pointer;
   
   img {
     width: 34px;
@@ -172,6 +197,7 @@ const ShareBox = styled(CommonCard)`
       display: flex;
       align-items: center;
       font-weight: 600;
+      cursor: pointer;
       
     }
     
