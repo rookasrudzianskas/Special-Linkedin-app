@@ -150,7 +150,7 @@ const Main = (props) => {
                         </li>
                         <li>
                             <a>
-                                2 comments
+                                {article.comments}
                             </a>
                         </li>
                     </SocialCounts>
