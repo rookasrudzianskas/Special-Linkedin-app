@@ -16,6 +16,7 @@ import PostModal from "./PostModal";
 import {Button, IconButton} from "@material-ui/core";
 import {connect} from "react-redux";
 import { getArticleAPI } from "../actions";
+import ReactPlayer from "react-player";
 
 const Main = (props) => {
 
@@ -103,16 +104,16 @@ const Main = (props) => {
                     props.loading && <AutorenewIcon />
                 }
                 {props.articles.length > 0 &&
-                props.articles.map((article, key) => {
+                props.articles.map((article, key) => (
 
                 <Article key={key}>
                     <SharedActor>
                         <a>
-                            <img src="/images/user.svg" alt=""/>
+                            <img src={article.actor.image} alt=""/>
                             <div>
-                                <span>Title</span>
-                                <span>Info</span>
-                                <span>Date</span>
+                                <span>{article.actor.title}</span>
+                                <span>{article.actor.description}</span>
+                                <span>{article.actor.date.toDate().toLocaleDateString()}</span>
                             </div>
                         </a>
 
@@ -122,12 +123,18 @@ const Main = (props) => {
                     </SharedActor>
 
                     <Description>
-                        Description
+                        {article.description}
                     </Description>
 
                     <SharedImg>
                         <a>
-                            <img src="https://pbs.twimg.com/profile_images/1350895249678348292/RS1Aa0iK.jpg" alt=""/>
+                            {!article.sharedImg && article.video ? (<ReactPlayer width={'100%'} url={article.video}/> )
+
+                                :
+                                (
+                                        article.sharedImg && <img src={article.sharedImg} alt=""/>
+                                )
+                            }
                         </a>
                     </SharedImg>
 
@@ -169,7 +176,7 @@ const Main = (props) => {
 
                 </SocialActions>
                 </Article>
-                })}
+                ))}
             </Content>
 
             <PostModal showModal={showModal} handleClick={handleClick}/>
