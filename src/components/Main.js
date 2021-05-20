@@ -51,6 +51,11 @@ const Main = (props) => {
         }
     };
     return (
+        <>
+            { props.articles.length === 0 ? (
+                <p>There are no articles yet</p>
+
+            ) : (
         <Container>
             <ShareBox>
                 <div>
@@ -97,8 +102,10 @@ const Main = (props) => {
                 {
                     props.loading && <AutorenewIcon />
                 }
+                {props.articles.length > 0 &&
+                props.articles.map((article, key) => {
 
-                <Article>
+                <Article key={key}>
                     <SharedActor>
                         <a>
                             <img src="/images/user.svg" alt=""/>
@@ -162,10 +169,13 @@ const Main = (props) => {
 
                 </SocialActions>
                 </Article>
+                })}
             </Content>
 
             <PostModal showModal={showModal} handleClick={handleClick}/>
         </Container>
+                )}
+        </>
     );
 };
 
@@ -174,7 +184,7 @@ const Main = (props) => {
 
 const Container = styled.div`
   grid-area: main;
-  
+
 `
 
 const CommonCard = styled.div`
@@ -186,7 +196,7 @@ const CommonCard = styled.div`
   position: relative;
   border: none;
   box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 0 0 rgb(0 0 0 / 20% );
-  
+
 `
 
 const ShareBox = styled(CommonCard)`
@@ -196,12 +206,12 @@ const ShareBox = styled(CommonCard)`
   margin:  0 0 8px;
   background: white;
   cursor: pointer;
-  
+
   img {
     width: 34px;
     height: 34px;
   }
-  
+
   div {
     button {
       outline: none;
@@ -215,20 +225,20 @@ const ShareBox = styled(CommonCard)`
       align-items: center;
       font-weight: 600;
       cursor: pointer;
-      
+
     }
-    
+
     &:first-child {
       display: flex;
       align-items: center;
       padding: 8px 16px 0px 16px;
-      
+
       img {
         width: 34px;
         border-radius: 50%;
         margin-right: 8px;
       }
-      
+
       button {
         margin: 4px 0;
         flex-grow: 1;
@@ -238,23 +248,23 @@ const ShareBox = styled(CommonCard)`
         background-color: white;
         text-align: left;
       }
-      
-      
+
+
       }
       &:nth-child(2) {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
         padding-bottom: 4px;
-        
+
         button {
           img {
             margin: 0 4px 0 -2px;
           }
-          
+
           span {
             color: #70b5f9;
-            
+
           }
         }
       }
@@ -273,7 +283,7 @@ const SharedActor = styled.div`
   padding: 12px 16px 0;
   margin-bottom: 8px;
   align-items: center;
-  
+
   display: flex;
   a {
     margin-right: 12px;
@@ -281,12 +291,12 @@ const SharedActor = styled.div`
     overflow: hidden;
     display: flex;
     text-decoration: none;
-    
+
     img {
       width: 48px;
       height: 48px;
     }
-    
+
     & > div {
       display: flex;
       flex-direction: column;
@@ -301,16 +311,16 @@ const SharedActor = styled.div`
           font-weight: 700;
           color: rgba(0, 0, 0, 1);
         }
-        
+
         &:nth-child(n+1) {
           font-size: 12px;
           color: rgba(0, 0, 0, 0.6);
-          
+
         }
       }
     }
   }
-  
+
   button {
     position: absolute;
     right: 12px;
@@ -319,8 +329,8 @@ const SharedActor = styled.div`
     border: none;
     outline: none;
   }
-  
-  
+
+
 `
 
 const Description = styled.div`
@@ -337,12 +347,12 @@ const SharedImg = styled.div`
   display: block;
   position: relative;
   background-color: #f9fafb;
-  
+
   img {
     object-fit: contain;
     width: 100%;
     height: 100%;
-    
+
   }
 `
 const SocialCounts = styled.ul`
@@ -354,13 +364,13 @@ const SocialCounts = styled.ul`
   padding: 8px 0;
   border-bottom: 1px solid #e9e5df;
   list-style: none;
-  
+
   li {
     margin-right: 5px;
     font-size: 12px;
     button {
       display: flex;
-      
+
     }
   }
 `
@@ -372,14 +382,14 @@ const SocialActions = styled.div`
   margin: 0;
   min-height: 40px;
   padding: 4px 8px;
-  
+
   button {
     display: inline-flex;
     align-items: center;
     padding: 8px;
     color: #0a66c2;
-    
-    
+
+
     @media(min-width: 768px) {
       span {
         margin-left: 8px;
@@ -402,6 +412,7 @@ const mapStateToProps = (state) => {
     return {
         loading: state.articleState.loading,
         user: state.userState.user,
+        articles: state.articleState.articles,
     };
 };
 
