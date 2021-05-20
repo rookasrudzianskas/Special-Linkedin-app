@@ -8,6 +8,8 @@ import ShareIcon from '@material-ui/icons/Share';
 import {useState } from "react";
 import ReactPlayer from "react-player";
 import {connect} from "react-redux";
+import firebase from "firebase";
+import {postArticleAPI} from "../actions";
 import {signInAPI} from "../actions";
 
 const PostModal = (props) => {
@@ -32,7 +34,25 @@ const PostModal = (props) => {
         setShareImage("");
         setVideoLink("")
         setAssetArea(area);
-    }
+    };
+
+    const postArticle = (e) => {
+        e.preventDefault();
+        if(e.target !== e.currentTarget) {
+            return;
+        }
+
+        const payload = {
+            image: shareImage,
+            video: videoLink,
+            user: props.user,
+            description: editorText,
+            timestamp: firebase.firestore.Timestamp.now(),
+        };
+
+        props.postArticle(payload);
+        reset(e);
+    };
 
     const reset = (e) => {
         setEditorText("");
@@ -58,9 +78,19 @@ const PostModal = (props) => {
                 </Header>
                 <SharedContent>
                     <UserInfo>
+                    {props.user.photoURL ? (
+                        <img src={props.user.photoURL}  alt={"Rokas"}/>
+                        ) : (
+
                         <img src="/images/user.svg" alt=""/>
-                        <span>Name</span>
+
+                        )}
+                    <span>{props.user.displayName}</span>
                     </UserInfo>
+                    {/*<UserInfo>*/}
+                    {/*    <img src="/images/user.svg" alt=""/>*/}
+                    {/*    <span>Name</span>*/}
+                    {/*</UserInfo>*/}
                     <Editor>
                     <textarea value={editorText} onChange={(e) => setEditorText(e.target.value)} placeholder="Add the post about anything?! 🚀" autoFocus={true} />
 
@@ -284,23 +314,19 @@ const UploadImage = styled.div`
     width: 100%;
   }
 `
-
 const mapStateToProps = (state) => {
-    return {
-        // this is where the user is stored
-        user: state.userState.user,
-    };
+  return {
+      user: state.userState.user,
+  }
 };
-
-
 
 // this one, gets this function and stores in the signIn, to make it on the google button
 const mapDispatchToProps = (dispatch) => ({
-    signIn: () => dispatch(signInAPI()),
+
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(PostModal)
 
 
 
@@ -315,8 +341,4 @@ export default connect(mapStateToProps, mapDispatchToProps)(Login)
 
 
 
-
-
-
-export default PostModal;
 
