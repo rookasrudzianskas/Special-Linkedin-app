@@ -29,9 +29,13 @@ const Main = () => {
         switch (showModal) {
             case "open":
                 setShowModal("close");
+                console.log("closed")
+
+
                 break;
             case "close":
                 setShowModal("open");
+                console.log("fired")
                 break;
 
             default:

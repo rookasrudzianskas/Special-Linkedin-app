@@ -10,11 +10,24 @@ import {useState } from "react";
 const PostModal = (props) => {
 
     const [editorText, setEditorText] = useState("");
+    const [shareImage, setShareImage] = useState("");
+
+    const handleChange = (e) => {
+        const image = e.target.files[0];
+
+        if(image === '' || image === undefined) {
+            alert(`not an image, the image file is a ${typeof(image)}`);
+            return;
+        }
+        // if we do not get error
+        setShareImage(image);
+    };
 
     const reset = (e) => {
         setEditorText("");
         props.handleClick(e)
-    }
+        console.log("fired >>> ")
+    };
 
     console.log(editorText)
     return (
@@ -34,7 +47,13 @@ const PostModal = (props) => {
                         <span>Name</span>
                     </UserInfo>
                     <Editor>
-                    <textarea value={editorText} onChange={(e) => setEditorText(e.target.value)} placeholder="Add the post about anything?! 🚀" autoFocus={true}></textarea>
+                    <textarea value={editorText} onChange={(e) => setEditorText(e.target.value)} placeholder="Add the post about anything?! 🚀" autoFocus={true} />
+                        <UploadImage>
+                            <input type="file" accept="image/gif, image/jpeg, image/png" name="image" id="file" style={{ display: 'none' }} onChange={handleChange}/>
+                            <p><label htmlFor="file">Select an image to share</label></p>
+
+                            {shareImage && <img src={URL.createObjectURL(shareImage)} alt=""/>}
+                        </UploadImage>
                     </Editor>
                 </SharedContent>
                 <SharedCreation>
@@ -60,7 +79,7 @@ const PostModal = (props) => {
 
                 </ShareComment>
 
-                    <PostButton>
+                    <PostButton disabled={!editorText ? true : false}>
                         Post
                     </PostButton>
 
@@ -83,6 +102,7 @@ const Container = styled.div`
   z-index: 999999;
   color: black;
   background-color: rgba(0, 0, 0, 0.8);
+  animation: fadeIn 0.3s;
 
 `
 
@@ -200,15 +220,15 @@ const PostButton = styled.div`
   border-radius: 20px;
   padding-left: 16px;
   padding-right: 16px;
-  background: #0a66c2;
-  color: white;
+  background: ${props => props.disabled ? 'rgba(0, 0, 0, 0.8)' : '#0a66c2'};
+  color: ${props => props.disabled ? 'rgba(1, 1, 1, 0.2)' : "white"};
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 
   &:hover {
-    background: #004182;
+    background: ${props => props.disabled ? 'rgba(0, 0, 0, 0.08)' : '#004182'};
   }
 `
 
@@ -232,7 +252,13 @@ const Editor = styled.div`
   }
 `
 
-
+const UploadImage = styled.div`
+  text-align: center;
+  
+  img {
+    width: 100%;
+  }
+`
 
 
 
