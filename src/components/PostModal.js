@@ -12,6 +12,12 @@ const PostModal = () => {
                        <CloseIcon />
                     </button>
                 </Header>
+                <SharedContent>
+                    <UserInfo>
+                        <img src="/images/user.svg" alt=""/>
+                        <span>Name</span>
+                    </UserInfo>
+                </SharedContent>
             </Content>
         </Container>
     );
@@ -37,7 +43,7 @@ const Content = styled.div`
   background-color: white;
   max-height: 90%;
   overflow: initial;
-  border-radius: 5%;
+  border-radius: 2%;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -46,9 +52,58 @@ const Content = styled.div`
 `
 
 const Header = styled.div`
+  display: block;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  .MuiSvgIcon-root {
+    height: 40px;
+    width: 40px;
+    min-width: auto;
+    color: rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+  }
   
 `
 
+const SharedContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow-y: auto;
+  vertical-align: baseline;
+  background: transparent;
+  padding: 8px 12px;
+`
+
+const UserInfo = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  
+  svg, img {
+    width: 48px;
+    height: 48px;
+    background-clip: border-box;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    
+  }
+  
+  span {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-left: 5px;
+  }
+`
 
 
 
