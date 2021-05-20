@@ -1,12 +1,17 @@
 import React from 'react';
 import styled from "styled-components";
 import {isCompositeComponent} from "react-dom/test-utils";
-
+import CloseIcon from '@material-ui/icons/Close';
 const PostModal = () => {
     return (
         <Container>
             <Content>
-                Content
+                <Header>
+                    <h2>Create a post</h2>
+                    <button>
+                       <CloseIcon />
+                    </button>
+                </Header>
             </Content>
         </Container>
     );
@@ -38,8 +43,13 @@ const Content = styled.div`
   flex-direction: column;
   top: 32px;
   margin: 0 auto;
+`
+
+const Header = styled.div`
   
 `
+
+
 
 
 
