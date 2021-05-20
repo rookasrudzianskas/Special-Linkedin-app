@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from "styled-components";
 import HomeIcon from '@material-ui/icons/Home';
 import VideocamIcon from '@material-ui/icons/Videocam';
@@ -10,14 +10,21 @@ import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import ShareIcon from '@material-ui/icons/Share';
 import SendIcon from '@material-ui/icons/Send';
 import {Chat} from "@material-ui/icons";
+import AutorenewIcon from '@material-ui/icons/Autorenew';
 import { useState } from "react";
-
 import PostModal from "./PostModal";
-
 import {Button, IconButton} from "@material-ui/core";
-const Main = () => {
+import {connect} from "react-redux";
+import { getArticleAPI } from "../actions";
+
+const Main = (props) => {
 
     const [showModal, setShowModal ] = useState("close");
+
+    useEffect(() => {
+        // run once
+        props.getArticles();
+    }, []);
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -42,14 +49,17 @@ const Main = () => {
                 setShowModal("close");
                 break;
         }
-    }
+    };
     return (
         <Container>
             <ShareBox>
-                Share
                 <div>
+                { props.user && props.user.photoURL ? (
+                    <img src={props.user.photoURL} />
+                    ) : (
                     <img src="/images/user.svg" alt=""/>
-                    <button onClick={handleClick}>Start a post</button>
+                )}
+                    <button onClick={handleClick} disabled={props.loading ? true : false}>Start a post</button>
                 </div>
 
                 <div>
@@ -83,8 +93,11 @@ const Main = () => {
 
                 </div>
             </ShareBox>
+            <Content>
+                {
+                    props.loading && <AutorenewIcon />
+                }
 
-            <div>
                 <Article>
                     <SharedActor>
                         <a>
@@ -149,13 +162,13 @@ const Main = () => {
 
                 </SocialActions>
                 </Article>
-            </div>
+            </Content>
+
             <PostModal showModal={showModal} handleClick={handleClick}/>
         </Container>
     );
 };
 
-export default Main;
 
 
 
@@ -376,7 +389,27 @@ const SocialActions = styled.div`
 `
 
 
+const Content = styled.div`
+  text-align: center;
+  transition: transform 2s ease-in-out;
+  & > .MuiSvgIcon-root {
+    width: 30px;
+    transform: rotate(360deg);
+  }
+`;
 
+const mapStateToProps = (state) => {
+    return {
+        loading: state.articleState.loading,
+        user: state.userState.user,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+    getArticles: () => dispatch(getArticleAPI()),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
 
 
 
