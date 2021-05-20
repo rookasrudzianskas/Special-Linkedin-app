@@ -79,7 +79,6 @@ export function postArticleAPI(payload) {
                     date: payload.timestamp,
                     image: payload.user.photoURL
                 },
-
                 video: payload.video,
                 sharedImg: "",
                 comments: 0,
