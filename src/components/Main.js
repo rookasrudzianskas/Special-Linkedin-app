@@ -10,6 +10,9 @@ import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import ShareIcon from '@material-ui/icons/Share';
 import SendIcon from '@material-ui/icons/Send';
 import {Chat} from "@material-ui/icons";
+
+import PostModal from "./PostModal";
+
 import {Button, IconButton} from "@material-ui/core";
 const Main = () => {
     return (
@@ -119,6 +122,7 @@ const Main = () => {
                 </SocialActions>
                 </Article>
             </div>
+            <PostModal />
         </Container>
     );
 };
